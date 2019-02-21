@@ -1,0 +1,18 @@
+version: "3"
+services:
+  pg_admin:
+    image: dpage/pgadmin4 
+    ports: 
+      - 80:80
+    environment: 
+      - PGADMIN_DEFAULT_EMAIL=test@test.com
+      - PGADMIN_DEFAULT_PASSWORD=test1234
+  db:
+    build: .
+    volumes:
+      - .:/work
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_DB=db
+      - POSTGRES_USER=dbuser
